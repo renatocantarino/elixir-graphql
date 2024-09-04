@@ -8,7 +8,6 @@ defmodule Twix.Users.Follow do
     with {:ok , _user1}  <- exists(user_id)  ,
          {:ok , _user2}  <- exists(follower_id) do
           create_follower(user_id,follower_id)
-
     end
   end
 
