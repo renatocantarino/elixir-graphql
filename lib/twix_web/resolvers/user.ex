@@ -7,10 +7,13 @@ defmodule TwixWeb.Resolvers.User do
   def update(%{input: params}, _context),  do: Twix.update_user(params)
 
   def add_follower(%{input: %{user_id: user_id, follower_id: follower_id}}, _context) do
-    Logger.debug "Var user_id: #{inspect(user_id)}"
-    Logger.debug "Var follower_id: #{inspect(follower_id)}"
     Twix.add_follower(user_id, follower_id)
   end
+  # def add_follower(%{input: %{user_id: user_id, follower_id: follower_id}}, _context) do
+  #   {:ok, result} = Twix.add_follower(user_id, follower_id)
+  #   Absinthe.Subscription.publish(TwixWeb.Endpoint , result, new_follow: "new_follow_topic" )
+  #   {:ok, result}
+  # end
 
 
 

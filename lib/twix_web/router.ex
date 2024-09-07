@@ -3,13 +3,17 @@ defmodule TwixWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug
   end
 
   scope "/api" do
     pipe_through :api
 
     forward "/graphql", Absinthe.Plug, schema: TwixWeb.Schema
-    forward "/igraphql", Absinthe.Plug.GraphiQL, schema: TwixWeb.Schema
+    forward "/igraphql", Absinthe.Plug.GraphiQL,
+     socket: TwixWeb.TwixSocket,
+     schema: TwixWeb.Schema,
+     interface: :simple
   end
 
   # Enable LiveDashboard in development

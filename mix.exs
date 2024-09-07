@@ -45,6 +45,9 @@ defmodule Twix.MixProject do
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:crudry, "~> 2.4.0"},
+      {:cors_plug, "~> 2.0"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:absinthe_phoenix, "~> 2.0"}
     ]
   end
 

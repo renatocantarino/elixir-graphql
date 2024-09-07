@@ -62,5 +62,23 @@ defmodule TwixWeb.Schema.Types.Root do
 
   end
 
+  object :root_subscription do
+    field :new_post , type: :post do
+      config fn _args, _context ->
+        {:ok , topic: "new_post_topic"}
+      end
+      trigger :create_post , topic: fn _context -> ["new_post_topic"] end
+
+    end
+    field :new_follow , type: :add_follower_response do
+      config fn _args, _context ->
+        {:ok , topic: "new_follow_topic"}
+      end
+      trigger :add_fallowers , topic: fn _context -> ["new_follow_topic"] end
+
+    end
+
+  end
+
 
 end
