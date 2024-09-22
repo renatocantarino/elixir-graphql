@@ -6,6 +6,8 @@ defmodule TwixWeb.Resolvers.User do
 
   def update(%{input: params}, _context),  do: Twix.update_user(params)
 
+  def get_user_posts(user, %{page: page, per_page: per_page}, _context),  do: Twix.get_user_post(user,page,per_page)
+
   def add_follower(%{input: %{user_id: user_id, follower_id: follower_id}}, _context) do
     Twix.add_follower(user_id, follower_id)
   end

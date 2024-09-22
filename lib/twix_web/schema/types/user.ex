@@ -1,5 +1,6 @@
 defmodule TwixWeb.Schema.Types.User do
   use Absinthe.Schema.Notation
+  alias TwixWeb.Resolvers.User , as: UserResolver
 
   @desc "User entity"
   object :user do
@@ -7,7 +8,15 @@ defmodule TwixWeb.Schema.Types.User do
     field :nickname, non_null(:string)
     field :age, non_null(:integer)
     field :email, non_null(:string)
-    field :posts, list_of(:post)
+
+    field :posts, list_of(:post) do
+      arg :page, :integer, default_value: 1
+      arg :per_page, :integer, default_value: 10
+
+      resolve &UserResolver.get_user_post/3
+    end
+
+
     field :followers, list_of(:follower)
     field :followings, list_of(:following)
   end
